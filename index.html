@@ -117,7 +117,7 @@
 					        webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
 					        await webcam.setup(); // request access to the webcam
 					        await webcam.play();
-					        window.requestAnimationFrame(loop);
+					        animation2 = window.requestAnimationFrame(loop);
 					
 					        // append/get elements to the DOM
 					        const canvas = document.getElementById("canvas");
@@ -132,7 +132,7 @@
 					    async function loop(timestamp) {
 					        webcam.update(); // update the webcam frame
 					        await predict();
-					        animation2 =  window.requestAnimationFrame(loop);
+					        window.requestAnimationFrame(loop);
 					    }
 					    
 					    var status = "stand"
