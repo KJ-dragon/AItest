@@ -149,6 +149,7 @@
 							if(prediction[0].probability.toFixed(2) == 1.00) {
 								if(status == "squat"){
 									count++
+									alert(count)
 									success = "좋습니다!!"
 									if(count == reps) return
 								}
@@ -158,6 +159,7 @@
 							} else if(prediction[2].probability.toFixed(2) == 1.00){
 								if(status == "squat" || status == "stand"){
 									count++
+									alert(count)
 									fail = "똑바로 하세요."
 								}
 								status = "bent"
