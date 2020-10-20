@@ -132,7 +132,7 @@
 					    async function loop(timestamp) {
 					        webcam.update(); // update the webcam frame
 					        await predict();
-					        window.requestAnimationFrame(loop);
+					        animation2 =  window.requestAnimationFrame(loop);
 					    }
 					    
 					    var status = "stand"
@@ -149,9 +149,10 @@
 							if(prediction[0].probability.toFixed(2) == 1.00) {
 								if(status == "squat"){
 									count++
-									alert(count)
 									success = "좋습니다!!"
-									if(count == reps) return
+									if(count == reps) cancelAnimationFrame(animation2);
+
+
 								}
 								status = "stand"
 							} else if(prediction[1].probability.toFixed(2) == 1.00){
