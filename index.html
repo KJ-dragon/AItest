@@ -54,7 +54,7 @@
                 id="navcol-1">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member/diary.do">일지</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/workout/workOutMain.do">운동</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://happy-kare-99d044.netlify.app/">AI트레이너</a></li>
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">커뮤니티</a>
                         	
 							<!-- 	                       
@@ -80,7 +80,10 @@
     </nav>
 		
 		
-	
+	<div class="newsletter-subscribe">
+        <div class="container">
+            <div class="intro">
+            	<div class="text-center">
 		<div>Teachable Machine Pose Model</div>
 				<button type="button" onclick="init()">Start</button>
 				<div><canvas id="canvas"></canvas></div>
@@ -94,7 +97,7 @@
 				    // the link to your model provided by Teachable Machine export panel
 				    const URL = "./my_model/";
 				    let model, webcam, ctx, labelContainer, maxPredictions;
-				
+					
 				    async function init() {
 				        const modelURL = URL + "model.json";
 				        const metadataURL = URL + "metadata.json";
@@ -128,14 +131,32 @@
 				        await predict();
 				        window.requestAnimationFrame(loop);
 				    }
-				
+				    
+				    var status = "stand"
+					var count = 0
+					var success = ""
+					var fail = ""
 				    async function predict() {
 				        // Prediction #1: run input through posenet
 				        // estimatePose can take in an image, video or canvas html element
 				        const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
 				        // Prediction 2: run input through teachable machine classification model
 				        const prediction = await model.predict(posenetOutput);
-				
+						if(prediction[0].probability.toFixed(2) == 1.00) {
+							if(status == "squat"){
+								count++
+								success = "좋습니다!!"
+							}
+							status = "stand"
+						} else if(prediction[1].probability.toFixed(2) == 1.00){
+							status = "squat"
+						} else if(prediction[2].probability.toFixed(2) == 1.00){
+							if(status == "squat" || status == "stand"){
+								count++
+								fail = "똑바로 하세요."
+							}
+							status = "bent"
+						}
 				        for (let i = 0; i < maxPredictions; i++) {
 				            const classPrediction =
 				                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
@@ -158,6 +179,12 @@
 				        }
 				    }
 				</script>
+				</div>
+            </div>
+        </div>
+    </div>	
+	
+	
 	
 </body>
 </html>
