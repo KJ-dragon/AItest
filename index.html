@@ -160,9 +160,8 @@
 								status = "squat"
 							} else if(prediction[2].probability.toFixed(2) == 1.00){
 								if(status == "squat" || status == "stand"){
-									count++
-									$('#count').text("Count : " + count)
 									fail = "똑바로 하세요."
+									$('#count').text(fail)
 								}
 								status = "bent"
 							}
