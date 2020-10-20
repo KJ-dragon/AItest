@@ -102,7 +102,6 @@
 						
 					    async function init() {
 					    	var reps = document.getElementById("reps");
-					    	alert(reps)
 					        const modelURL = URL + "model.json";
 					        const metadataURL = URL + "metadata.json";
 					
@@ -151,6 +150,7 @@
 								if(status == "squat"){
 									count++
 									success = "좋습니다!!"
+									if(count == reps) return
 								}
 								status = "stand"
 							} else if(prediction[1].probability.toFixed(2) == 1.00){
