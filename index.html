@@ -85,7 +85,7 @@
             <div class="intro">
             	<div class="text-center">
 					<h3>Squat Pose Model</h3>
-					<input class="form-control" id="reps" type="text" name="reps" placeholder="반복 횟수를 입력하세요. ex) 10">
+					<input class="form-control" id="reps" type="text" name="reps" placeholder="반복 횟수를 입력하세요. ex) 10" required>
 <!-- 					<button type="button" onclick="init()">Start</button> -->
 					<button class="btn btn-primary" type="button" style="margin-top: 010px;" onclick="init()">Start</button>
 					<div><canvas id="canvas"></canvas></div>
@@ -117,7 +117,7 @@
 					        webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
 					        await webcam.setup(); // request access to the webcam
 					        await webcam.play();
-					        animation2 = window.requestAnimationFrame(loop);
+					        animation2 = await window.requestAnimationFrame(loop);
 					
 					        // append/get elements to the DOM
 					        const canvas = document.getElementById("canvas");
@@ -132,7 +132,7 @@
 					    async function loop(timestamp) {
 					        webcam.update(); // update the webcam frame
 					        await predict();
-					        animation2 = window.requestAnimationFrame(loop);
+					        animation2 = await window.requestAnimationFrame(loop);
 					    }
 					    
 					    var status = "stand"
