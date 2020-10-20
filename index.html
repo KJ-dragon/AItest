@@ -150,9 +150,7 @@
 								if(status == "squat"){
 									count++
 									success = "좋습니다!!"
-									if(count == reps) window.cancelAnimationFrame(animation2);
-
-
+									if(count == reps) await window.cancelAnimationFrame(animation2);
 								}
 								status = "stand"
 							} else if(prediction[1].probability.toFixed(2) == 1.00){
