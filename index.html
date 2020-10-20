@@ -151,9 +151,12 @@
 							if(prediction[0].probability.toFixed(2) == 1.00) {
 								if(status == "squat"){
 									count++
-									$('#count').text("Count : " + count)
 									success = "좋습니다!!"
-									if(count == reps) await window.cancelAnimationFrame(animation2);
+									if(count > reps) {
+										$('#count').text("Count : " + count)
+									}else {
+										$('#count').text("목표 횟수를 달성했습니다!!")
+									}
 								}
 								status = "stand"
 							} else if(prediction[1].probability.toFixed(2) == 1.00){
