@@ -1,10 +1,119 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <title>sss</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="ssets/css/tui-date-picker.min.css">	
+    
+	<script src="assets/js/tui-date-picker.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>    	
+    
+    <script type="text/javascript">
+    
+    	$(function(){
+    		
+	    	<%	
+	    		int cd_no = 1;
+	    		request.setAttribute("cd_no", cd_no);
+	    		
+	    		int user_no = 0;
+	    		
+	    		if (session.getAttribute("user_no") != null) {
+	    			user_no = (Integer)session.getAttribute("user_no");
+	    		}
+
+	    		if(user_no != 0){	%>
+				
+	    		$('#nickCheck').text("Log Out");
+	    		$('#nickCheck').attr("href", '<%=request.getContextPath()%>/member/userLogout.do');
+	    		$('#signUp').text("Profile");
+	    		$('#signUp').attr("href", '<%=request.getContextPath()%>/member/myPage.do');
+	    		
+	    	<%	}else{ %>
+	    	
+	    		//$('#signUp').show();
+	    	
+    		<%	}	%> 
+    			
+    		<%	String gb = (String)session.getAttribute("gb");
+    			String path = "";
+    			path = request.getContextPath();
+    			if(gb != null && gb.equals("Y")){	%>
+    			code = '<a class="navbar-brand" href="<%=path%>/mmain.do">관리자SSS</a>';
+    			$('#checkAdmin').prepend(code);
+			<%	}	%>
+    			
+				
+    	});
+    </script>
+    
+    <style type="text/css">
+    	.test{
+     		color: white; 
+     		font-size: 14px; 
+			width: 100%;
+		    padding: .25rem 1.5rem;
+		    clear: both;
+		    font-weight: 400;
+		    text-align: inherit;
+		    white-space: nowrap;
+		    background-color: transparent;
+		    border: 0;
+    	}
+    </style>
 </head>
 <body>
+
+		
+		<nav class="navbar navbar-dark navbar-expand-md bg-dark navigation-clean-button">
+        <div class="container" id="checkAdmin"><a class="navbar-brand" href="<%=request.getContextPath()%>/main.do">SSS</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member/diary.do">일지</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/workout/workOutMain.do">운동</a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">커뮤니티</a>
+                        	
+							<!-- 	                       
+                        	<form method="post" id="boardMove" action="<%=request.getContextPath()%>/board/freeBoardMain.do">
+								<input type="submit" value="자유게시판" class="test" name="boardNm">
+	                        	<input type="submit" value="영양게시판" class="test" name="boardNm">
+	                        	<input type="submit" value="트레이닝게시판" class="test" name="boardNm"> 
+                        	</form> 
+	                        -->
+                        <div class="dropdown-menu">
+	                        <a class="dropdown-item" href="<%=request.getContextPath()%>/board/boardMain.do?cd_id=A106">자유게시판</a>
+ 		                    <a class="dropdown-item" href="<%=request.getContextPath()%>/board/boardMain.do?cd_id=A102">영양게시판</a>
+	                        <a class="dropdown-item" href="<%=request.getContextPath()%>/board/boardMain.do?cd_id=A103">트레이닝 게시판</a>
+	                        <a class="dropdown-item" href="<%=request.getContextPath()%>/board/boardMain.do?cd_id=A105">몸짱게시판</a>                        
+	                        <a class="dropdown-item" href="<%=request.getContextPath()%>/board/boardMain.do?cd_id=A104">Q&A 게시판</a>                        
+	                    </div>
+							                        
+                    </li>
+                </ul>
+                <span class="navbar-text actions"><a id="nickCheck" class="login" href="<%=request.getContextPath()%>/member/userLoginForm.do">Log In</a><a class="btn btn-light action-button" role="button" id="signUp" href="<%=request.getContextPath()%>/member/joinForm.do">Sign Up</a></span>
+            </div>
+        </div>
+    </nav>
+		
+		
+	
 		<div>Teachable Machine Pose Model</div>
 				<button type="button" onclick="init()">Start</button>
 				<div><canvas id="canvas"></canvas></div>
