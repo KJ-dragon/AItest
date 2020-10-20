@@ -25,42 +25,9 @@
     <script src="assets/js/bs-init.js"></script>    	
     
     <script type="text/javascript">
-    
-    	$(function(){
-    		
-	    	<%	
-	    		int cd_no = 1;
-	    		request.setAttribute("cd_no", cd_no);
-	    		
-	    		int user_no = 0;
-	    		
-	    		if (session.getAttribute("user_no") != null) {
-	    			user_no = (Integer)session.getAttribute("user_no");
-	    		}
 
-	    		if(user_no != 0){	%>
-				
-	    		$('#nickCheck').text("Log Out");
-	    		$('#nickCheck').attr("href", '<%=request.getContextPath()%>/member/userLogout.do');
-	    		$('#signUp').text("Profile");
-	    		$('#signUp').attr("href", '<%=request.getContextPath()%>/member/myPage.do');
-	    		
-	    	<%	}else{ %>
-	    	
-	    		//$('#signUp').show();
-	    	
-    		<%	}	%> 
-    			
-    		<%	String gb = (String)session.getAttribute("gb");
-    			String path = "";
-    			path = request.getContextPath();
-    			if(gb != null && gb.equals("Y")){	%>
-    			code = '<a class="navbar-brand" href="<%=path%>/mmain.do">관리자SSS</a>';
-    			$('#checkAdmin').prepend(code);
-			<%	}	%>
-    			
-				
-    	});
+			
+    
     </script>
     
     <style type="text/css">
@@ -82,7 +49,7 @@
 
 		
 		<nav class="navbar navbar-dark navbar-expand-md bg-dark navigation-clean-button">
-        <div class="container" id="checkAdmin"><a class="navbar-brand" href="<%=request.getContextPath()%>/main.do">SSS</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container" id="checkAdmin"><a class="navbar-brand" href="http://localhost/sss/main.do">SSS</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav mr-auto">
@@ -107,7 +74,7 @@
 							                        
                     </li>
                 </ul>
-                <span class="navbar-text actions"><a id="nickCheck" class="login" href="<%=request.getContextPath()%>/member/userLoginForm.do">Log In</a><a class="btn btn-light action-button" role="button" id="signUp" href="<%=request.getContextPath()%>/member/joinForm.do">Sign Up</a></span>
+                <span class="navbar-text actions"><a id="nickCheck" class="login" href="<%=request.getContextPath()%>/member/userLoginForm.do">Log Out</a><a class="btn btn-light action-button" role="button" id="signUp" href="<%=request.getContextPath()%>/member/joinForm.do">Profile</a></span>
             </div>
         </div>
     </nav>
